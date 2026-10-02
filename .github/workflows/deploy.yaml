@@ -18,5 +18,8 @@ jobs:
       #git actions안에 컴퓨터한테 그래들 실행해라!
       - run: chmod +x ./gradlew
 
+      # 실제로 빌드해라!
+      - run: ./gradlew build
+
       #jar가 만들어졌는지 확인하기
       - run: ls -l build/libs
