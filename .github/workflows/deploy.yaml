@@ -1,14 +1,22 @@
-
-# 프로젝트 이름
 name: 스프링CI/CD
 
 on: [push]
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest # git 안에 컴퓨터(운영체제) 만들어줘
+    runs-on: ubuntu-latest #git 안에 컴퓨터 만들어줘 (운영체제)
 
     steps:
       - uses: actions/checkout@v6
+      - run: ls -l
 
-#
+      #자바 코드를 검사하기 위해서는 JDK를 다운
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      #git actions안에 컴퓨터한테 그래들 실행해라!
+      - run: chmod +x ./gradlew
+
+      #jar가 만들어졌는지 확인하기
+      - run: ls -l build/libs
