@@ -1,5 +1,10 @@
-﻿spring:
+spring:
   application:
     name: deploy_mcp
+  config:
+    import: optional:file:.env[.properties]
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
 
 service-key: ${SERVICE_KEY}
