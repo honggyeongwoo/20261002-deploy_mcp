@@ -18,8 +18,19 @@ jobs:
       #git actions안에 컴퓨터한테 그래들 실행해라!
       - run: chmod +x ./gradlew
 
-      # 실제로 빌드해라!
-      - run: ./gradlew build
+      # 실제로 빌드해라! (테스트 진행 포함!그래서
+      # 옵션 -x test 테스트진행을 제외!)
+      - run: ./gradlew build -x test
 
       #jar가 만들어졌는지 확인하기
       - run: ls -l build/libs
+
+      #jar를 EC2로 전송하기
+      - uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: build/libs/
+          target: /home/ubuntu/
+          strip_components: 2
