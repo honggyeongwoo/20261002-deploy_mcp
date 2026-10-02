@@ -3,6 +3,8 @@
 name: 스프링CI/CD
 
 on: [push]
+
+jobs:
   deploy:
     runs-on: ubuntu-latest # git 안에 컴퓨터(운영체제) 만들어줘
 
