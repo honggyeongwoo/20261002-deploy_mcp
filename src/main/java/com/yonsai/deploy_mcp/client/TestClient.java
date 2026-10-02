@@ -12,6 +12,9 @@ public interface TestClient {
 
     @GetMapping("/posts")
     List<Map<String, Object>> getPosts();
+
+    @GetMapping("/comments")
+    List<Map<String, Object>> getComments();
 }
 
 // public interface TestClient {

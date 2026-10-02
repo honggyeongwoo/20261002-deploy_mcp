@@ -1,7 +1,13 @@
 package com.yonsai.deploy_mcp.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.yonsai.deploy_mcp.tools.CommentTool;
+import com.yonsai.deploy_mcp.tools.LoanTool;
+import com.yonsai.deploy_mcp.tools.PostTool;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -9,6 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ChatController {
 
     private final ChatClient chatClient;
+
+    @Autowired
+    private PostTool postTool;
+
+    @Autowired
+    private CommentTool commentTool;
+
+    @Autowired
+    private LoanTool loanTool;
 
     // 생성자 서버가 실행할 때 한번만 실행해라! 타입검사해라!
     // private final 한번 저장된 객체는 절대 못바꾼다.
@@ -26,6 +41,7 @@ public class ChatController {
         String 결과 = chatClient
                 .prompt()
                 .user(qus)
+                .tools(postTool, commentTool, loanTool)
                 .call()
                 .content();
         System.out.println("log - ChatController - chat() 완료");
