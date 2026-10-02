@@ -1,3 +1,5 @@
-spring:
+﻿spring:
   application:
     name: deploy_mcp
+
+service-key: ${SERVICE_KEY}

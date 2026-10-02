@@ -1,5 +1,6 @@
 package com.yonsai.deploy_mcp.client;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.cloud.openfeign.FeignClient;
@@ -9,6 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 public interface TestClient {
 
-    @GetMapping("/posts/1")
-    Map<String, Object> getPosts();
+    @GetMapping("/posts")
+    List<Map<String, Object>> getPosts();
 }
+
+// public interface TestClient {
+
+// @GetMapping("/posts/1")
+// Map<String, Object> getPosts();
+// }
